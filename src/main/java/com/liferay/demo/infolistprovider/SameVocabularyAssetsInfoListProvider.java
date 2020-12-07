@@ -5,6 +5,7 @@ import com.liferay.asset.kernel.model.AssetCategory;
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.asset.util.AssetHelper;
+import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.info.list.provider.InfoListProvider;
 import com.liferay.info.list.provider.InfoListProviderContext;
 import com.liferay.info.pagination.Pagination;
@@ -147,8 +148,15 @@ public class SameVocabularyAssetsInfoListProvider implements InfoListProvider<As
 		BooleanQueryImpl categoriesQuery = new BooleanQueryImpl();
 
 		try {
-			searchQuery.addRequiredTerm("head", Boolean.TRUE);
+			// TODO make this configurable
+			// filter only latest version
+			//searchQuery.addRequiredTerm("head", Boolean.TRUE);
 
+			// TODO make this configurable
+			// filter on type of asset
+			searchQuery.addRequiredTerm(Field.ENTRY_CLASS_NAME, DLFileEntry.class.getName());
+
+			// TODO limit to specific vocabularyId and/or parentId
 			// category=A OR category=B OR category=C
 			User user = infoListProviderContext.getUser();
 			List<AssetCategory> categories = _AssetCategoryLocalService.getCategories(User.class.getName(), user.getPrimaryKey());
