@@ -11,9 +11,17 @@ Developed to run on the following versions of Liferay: `Liferay DXP 7.3`
 Built with [Liferay Workspace](https://help.liferay.com/hc/en-us/articles/360029147471-Liferay-Workspace) and [Blade CLI](https://help.liferay.com/hc/en-us/articles/360029147071-Blade-CLI).
 
 ![Newly added SameVocabulary Items Collection Provider](img_0.png)
+*Newly added SameVocabulary Items Collection Provider*  
+
 ![Preview of results](img_1.png)
+*Preview of results*  
+
 ![Category set with document](img_2.png)
+*Category set with document*  
+
 ![Category set with user](img_3.png)
+*Category set with user*  
+
 
 ## How to Build and Deploy to Liferay
 
