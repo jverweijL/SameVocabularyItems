@@ -146,6 +146,7 @@ public class SameVocabularyAssetsInfoListProvider implements InfoListProvider<As
 
 		BooleanQuery searchQuery = new BooleanQueryImpl();
 		BooleanQueryImpl categoriesQuery = new BooleanQueryImpl();
+		System.out.println("getSearchQuery");
 
 		try {
 			// TODO make this configurable
@@ -160,12 +161,15 @@ public class SameVocabularyAssetsInfoListProvider implements InfoListProvider<As
 			// category=A OR category=B OR category=C
 			User user = infoListProviderContext.getUser();
 			List<AssetCategory> categories = _AssetCategoryLocalService.getCategories(User.class.getName(), user.getPrimaryKey());
+			System.out.println("Found " + categories.size() + " categories for user " + user.getFullName());
 			for (AssetCategory category : categories) {
 				System.out.println("category: " + category.getName() + "|" + category.getCategoryId());
 				categoriesQuery.addTerm(Field.ASSET_CATEGORY_IDS, Long.valueOf(category.getCategoryId()).toString(), Boolean.FALSE);
 			}
 			searchQuery.add(categoriesQuery, BooleanClauseOccur.MUST);
-		} catch(Exception e) {}
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 		return searchQuery;
 	}
 
